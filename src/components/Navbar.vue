@@ -1,41 +1,30 @@
 <template>
-  <div>
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">Navbar</a>
+  <div class="margin-bottom">
+   <nav class="navbar navbar-toggleable-sm navbar-expand-md navbar-light bg-white">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <img src="../assets/logo.png" class="navbar-brand logo" alt="Askpit Logo">
 
-      <div class="navbar-collapse collapse" id="navbarsExampleDefault" aria-expanded="false" style="">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li v-for="item in links" class="nav-item">
+        <a class="nav-link mx-2">{{ item.text }}</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-primary my-2 mx-2 my-sm-0">Register</button>
+      <button class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</button>
+
+    </form>
   </div>
+</nav>
+<navbar-message message="looowefowlel" type="danger"></navbar-message>
+</div>
 </template>
 
 <script>
+import NavbarMessage from './NavbarMessage'
 export default {
   name: 'Navbar',
   data () {
@@ -44,12 +33,12 @@ export default {
         {
           id: 0,
           text: 'Hello World',
-          page:'/HelloWorld'
+          page:'/HelloWorld',
         },
         {
           id: 1,
           text: 'Home',
-          page:'/Home'
+          page:'/Home',
         },
         {
           id: 2,
@@ -63,13 +52,39 @@ export default {
         }
       ]
     }
+  },
+  components:{
+    'navbar-message': NavbarMessage
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.spacing {
-  margin-right: 10px;
+@import url('../styles/anim.css');
+.margin-bottom {
+  margin-bottom: 25px;
 }
+
+.navbar {
+  font-size: 1.09em!important;
+  padding: 1rem 1.5rem !important;
+  border: none;
+  height: 70px;
+  border-bottom: 2px solid rgba(59, 175, 218, .55);
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .45);
+}
+
+
+.nav-link {
+  border-bottom: 2px solid transparent;
+}
+.nav-link:hover, .nav-link:focus {
+  transition: border-color .318s;
+  border-bottom: solid 2px #5d9cec;
+
+}
+
 </style>
