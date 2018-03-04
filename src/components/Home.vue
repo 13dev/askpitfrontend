@@ -7,7 +7,7 @@
 					<div style="margin: 30px;">
 						<a class="btn btn-lg btn-secondary" style="margin-right:20px;" href="">
 							<!--<img src="/img/android.png" width="40" />-->
-							<span>ASKPIT</span>
+							<span>{{ msg }}</span>
 						</a>
 						<a class="btn btn-primary btn-lg" href="">
 						<!--<img src="img/sign-up.png" width="40" />-->
@@ -21,6 +21,11 @@
 
 <script>
 	export default {
-		name: 'Home'
+		name: 'Home',
+		data () {
+			return {
+				msg: this.hCapitalizeFirstLetter('hehheehe')
+			}
+		}
 	}
 </script>

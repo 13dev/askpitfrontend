@@ -13,18 +13,20 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-primary my-2 mx-2 my-sm-0">Register</button>
+      <button @click.prevent="hMessage('ehehheheheh')" class="btn btn-primary my-2 mx-2 my-sm-0">Register</button>
       <button class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</button>
 
     </form>
   </div>
 </nav>
-<navbar-message message="looowefowlel" type="danger"></navbar-message>
+<div id="message"></div>
+<!--<n-message message="looowefowlel" type="primary"></n-message>-->
 </div>
 </template>
 
 <script>
 import NavbarMessage from './NavbarMessage'
+import Vue from 'vue'
 export default {
   name: 'Navbar',
   data () {
@@ -54,7 +56,7 @@ export default {
     }
   },
   components:{
-    'navbar-message': NavbarMessage
+    'n-message': NavbarMessage
   }
 }
 </script>

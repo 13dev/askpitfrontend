@@ -1,9 +1,9 @@
 <template>
-<div id="nav-message">
+<div id="nav-message" v-if="show">
   <div id="inner-message" class="alert" :class="'alert-' + type">
     <div class="container">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp;&nbsp;</i>
+      <i class="fa" :class="'fa-' + icon" aria-hidden="true">&nbsp;&nbsp;</i>
       <strong>deqwf {{ message }}</strong>
     </div>
   </div>
@@ -21,26 +21,43 @@ export default {
     },
     type: {
     	type: String,
-    	default: 'primary',
+    	default: 'info',
     	validator: function(value){
     		return [
 	    		'primary',
 	    		'danger',
 	    		'warning',
 	    		'info',
-	    		'success'
-    			].includes(value)
+	    		'success',
+	    		'secondary' ].includes(value)
     	}
     }
   },
   data () {
     return {
+    	icon: this.checkIcon(),
+    	show: true
     }
   },
   methods: {
-  	show: function() {
-  		this.message = "hehee";
-  	}
+  	checkIcon() {
+		let icon = 'exclamation'
+		if(this.type == 'primary' || this.type == 'success'){
+			icon = 'check-circle'
+		}else if(this.type == 'danger'){
+			icon = 'exclamation-triangle'
+		}
+		return icon
+	},
+	autoClose(active = true, time = 2000){
+		//if(!active) return;
+		setTimeout(() => {
+            this.show = false
+        }, time);
+	}
+  },
+  created(){
+  	this.autoClose()
   }
 }
 </script>

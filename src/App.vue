@@ -20,6 +20,13 @@ export default {
   components:{
     'navbar': Navbar,
     'app-footer': Footer
+  },
+  beforeMount: () => {
+    let instance = this.hMessage()
+    //instance.$slots.default = ['Click me!']
+    instance.$mount() // pass nothing
+    console.log(this.$refs)
+    //this.getElementById('message').appendChild(instance.$el)
   }
 
 }
