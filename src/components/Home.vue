@@ -27,7 +27,7 @@
 			}
 		},
 		created() {
-
+			this.$auth.test()
 		}
 	}
 </script>

@@ -6,10 +6,11 @@ import Register from '@/components/Register'
 import NavbarMessage from '@/components/NavbarMessage'
 import NotFound from '@/components/NotFound'
 import Login from '@/components/Login'
+import Api from '@/plugins/api.js'
 
-Vue.mixin({
+/*Vue.mixin({
 	methods: {
-		/*hMessage: (message, type = 'info') => {
+		hMessage: (message, type = 'info') => {
 			var ComponentClass = Vue.extend(NavbarMessage)
 	        var instance = new ComponentClass({
 	            propsData: {
@@ -19,13 +20,14 @@ Vue.mixin({
 	        })
 	        instance.$mount()
 	        return instance
-		}, */
+		}, 
 
     	hCapitalizeFirstLetter: str => str.charAt(0).toUpperCase() + str.slice(1)
   }
-})
+}) */
 
 Vue.use(Router)
+Vue.use(Api)
 
 export default new Router({
 	mode: 'history',
