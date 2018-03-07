@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="app">
-      <div class="container">
+      <div class="container" style="min-height: 500px;">
         <router-view/>
       </div>
     </div>
@@ -20,15 +20,7 @@ export default {
   components:{
     'navbar': Navbar,
     'app-footer': Footer
-  },
-  beforeMount: () => {
-    let instance = this.hMessage()
-    //instance.$slots.default = ['Click me!']
-    instance.$mount() // pass nothing
-    console.log(this.$refs)
-    //this.getElementById('message').appendChild(instance.$el)
   }
-
 }
 </script>
 
@@ -41,13 +33,10 @@ export default {
 }
 body, html {
   background-image: url("assets/background.png");
-  /* Full height */
-  height: 100%;
-
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  height: 100%;
 }
 
 .logo

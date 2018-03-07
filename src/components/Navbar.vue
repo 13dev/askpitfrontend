@@ -13,13 +13,12 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <button @click.prevent="hMessage('ehehheheheh')" class="btn btn-primary my-2 mx-2 my-sm-0">Register</button>
-      <button class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</button>
-
+      <router-link to="/register" tag="button" class="btn btn-primary my-2 mx-2 my-sm-0">Register</router-link>
+      <router-link to="/login" tag="button" class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</router-link>
     </form>
   </div>
 </nav>
-<div id="message"></div>
+<div ref="navmessage"></div>
 <!--<n-message message="looowefowlel" type="primary"></n-message>-->
 </div>
 </template>

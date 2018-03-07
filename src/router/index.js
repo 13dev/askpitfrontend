@@ -4,10 +4,12 @@ import Contact from '@/components/Contact'
 import Home from '@/components/Home'
 import Register from '@/components/Register'
 import NavbarMessage from '@/components/NavbarMessage'
+import NotFound from '@/components/NotFound'
+import Login from '@/components/Login'
 
 Vue.mixin({
 	methods: {
-		hMessage: (message, type = 'info') => {
+		/*hMessage: (message, type = 'info') => {
 			var ComponentClass = Vue.extend(NavbarMessage)
 	        var instance = new ComponentClass({
 	            propsData: {
@@ -15,8 +17,10 @@ Vue.mixin({
 	            	message: message
 	        	}
 	        })
+	        instance.$mount()
 	        return instance
-		},
+		}, */
+
     	hCapitalizeFirstLetter: str => str.charAt(0).toUpperCase() + str.slice(1)
   }
 })
@@ -40,6 +44,21 @@ export default new Router({
 		path: '/register',
 		name: 'Register',
 		component: Register
-	}
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: Login
+	},
+	{ 
+		path: '/404',
+		component: NotFound 
+	},  
+	{ 
+		path: '*', 
+		redirect: '/404' 
+	} 
 	]
 })
+
+

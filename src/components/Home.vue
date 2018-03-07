@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="home">
 		<div class="row" style="text-align:center; margin: 0 auto;">
 			<div class="well" style="padding: 20px; height:100%; margin: 0 auto;">
 	    		<h2 style="letter-spacing: 10px;">ASK&nbsp;&&nbsp;ANSWER</h2>
@@ -7,7 +7,7 @@
 					<div style="margin: 30px;">
 						<a class="btn btn-lg btn-secondary" style="margin-right:20px;" href="">
 							<!--<img src="/img/android.png" width="40" />-->
-							<span>{{ msg }}</span>
+							<span>ANDROID APP</span>
 						</a>
 						<a class="btn btn-primary btn-lg" href="">
 						<!--<img src="img/sign-up.png" width="40" />-->
@@ -24,8 +24,16 @@
 		name: 'Home',
 		data () {
 			return {
-				msg: this.hCapitalizeFirstLetter('hehheehe')
 			}
+		},
+		created() {
+
 		}
 	}
 </script>
+
+<style scoped>
+	.home {
+		margin-top: 10vh;
+	}
+</style>
