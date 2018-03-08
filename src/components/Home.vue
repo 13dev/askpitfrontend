@@ -27,7 +27,8 @@
 			}
 		},
 		created() {
-			this.$auth.test()
+			//this.$auth.test()
+			this.axios.get('/hehehe')
 		}
 	}
 </script>
