@@ -8,7 +8,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 //import Api from './plugins/api.js'
 
-axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com'
+axios.defaults.baseURL = 'http://localhost:8081/askpitapi/public/api/v1/'
 Vue.use(VueAxios, axios)
 //Vue.use(Api)
 
