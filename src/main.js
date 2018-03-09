@@ -6,9 +6,11 @@ import router from './router'
 import 'bootstrap/dist/js/bootstrap.js'
 import axios from 'axios'  
 import VueAxios from 'vue-axios'
+//import Api from './plugins/api.js'
 
-axios.defaults.baseURL = 'http://localhost:8081/342342'
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com'
 Vue.use(VueAxios, axios)
+//Vue.use(Api)
 
 Vue.config.productionTip = false
 
