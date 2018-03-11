@@ -13,8 +13,8 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <router-link to="/register" tag="button" class="btn btn-primary my-2 mx-2 my-sm-0">Register</router-link>
-      <router-link to="/login" tag="button" class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</router-link>
+      <router-link to="/register" v-if="!this.$auth.isAuthenticated()" tag="button" class="btn btn-primary my-2 mx-2 my-sm-0">Register</router-link>
+      <router-link to="/login" v-if="!this.$auth.isAuthenticated()" tag="button" class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</router-link>
     </form>
   </div>
 </nav>
