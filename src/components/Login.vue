@@ -8,6 +8,7 @@
 			class="form-control"
 			name="username"
 			placeholder="Email Address"
+			:class="{'is-invalid': invalid}"
 			required=""
 			autofocus="" />
 
@@ -15,9 +16,13 @@
 			v-model="password"
 			type="password"
 			class="form-control"
+			:class="{'is-invalid': invalid}"
 			name="password"
 			placeholder="Password"
 			required=""/>
+			<div class="invalid-feedback" v-if="invalid">
+          Please choose a username.
+        </div>
 			<label class="checkbox">
 				<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
 			</label>
@@ -31,7 +36,8 @@
 		data() {
 			return {
 				email: 'lesch.chesley@feil.biz',
-				password: 'secret'
+				password: 'secret',
+				invalid: false
 			}
 		},
 		methods: {
@@ -44,14 +50,25 @@
 				}
 				this.axios.post('auth/login',{
 					email: this.email,
-					password: this.password
+					password: this.password + '2'
 				})
-				.catch(response => {
-					// Catch error
-					this.$log.debug('Catch - doLogin()',response.data.code, response.data.message)
+				.catch((error) => {
+					this.$log.debug('Catch - doLogin()')
+					this.invalid = true
+					if (error.response) {
+				      	// The request was made, but the server responded with a status code
+				      	this.$log.debug(error.response.data, error.response.status,error.response.headers);
+				    } else {
+				      	// Something happened in setting up the request that triggered an Error
+				    	this.$log.debug('Error', error.message);
+				    }
 				})
-				.then(response => {
-					this.$auth.setToken(response.data.data.token, response.data.data.expires_in + Date.now())
+				.then((response) => {
+					if(response === undefined) return
+					this.invalid = false
+
+					let data = response.data.data
+					this.$auth.setToken(data.token, data.expires_in + Date.now())
 					this.$log.debug('Then - doLogin()', response.data.code, response.data.message)
 
 					// Redirect
