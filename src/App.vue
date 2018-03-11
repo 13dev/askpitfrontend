@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="app">
-      <div class="container" style="min-height: 500px;">
+      <div class="container" style="min-height: 400px;">
         <router-view/>
       </div>
     </div>
