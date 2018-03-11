@@ -35,7 +35,7 @@ export default new Router({
 	{
 		path: '/',
 		name: 'Home',
-		component: Home
+		component: Home,
 	},
 	{
 		path: '/contact',
@@ -45,21 +45,27 @@ export default new Router({
 	{
 		path: '/register',
 		name: 'Register',
-		component: Register
+		component: Register,
+		meta: {
+			guests: true
+		}
 	},
 	{
 		path: '/login',
 		name: 'Login',
-		component: Login
+		component: Login,
+		meta: {
+			guests: true
+		}
 	},
-	{ 
+	{
 		path: '/404',
-		component: NotFound 
-	},  
-	{ 
-		path: '*', 
-		redirect: '/404' 
-	} 
+		component: NotFound
+	},
+	{
+		path: '*',
+		redirect: '/404'
+	}
 	]
 })
 

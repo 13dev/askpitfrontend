@@ -27,7 +27,7 @@
 			}
 		},
 		created() {
-			this.$auth.getToken()
+			this.$log.info('Home created')
 		}
 	}
 </script>
