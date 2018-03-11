@@ -17,7 +17,8 @@ Vue.use(VueLogger, {
 
 axios.defaults.baseURL = 'http://localhost/askpitapi/public/api/v1/'
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
