@@ -1,18 +1,43 @@
 
 export default (Vue) => {
 	Vue.auth = {
-		getToken: () => {
-			console.log('get tokennnnnn')
-			Vue.axios.get('posts')
-			.then(response => {
-				console.log(response)
-			})
+		getToken (email, password) {
+			Vue.$log.debug('getToken()', email, password)
+		    var token = localStorage.getItem('token');
+			var expiration = localStorage.getItem('expiration');
+
+			if( ! token || ! expiration ){
+				return null
+			}
+
+			if( Date.now() > parseInt(expiration) ){
+				this.destroyToken()
+				return null
+			} else {
+				return token;
+			}
 		},
-	    // setToken: () => {
-	    // },
-	    // deleteToken: () => {
-	    // }
+	    setToken (token, expiration) {
+	    	Vue.$log.debug('setToken()')
+      		localStorage.setItem('token', token)
+      		localStorage.setItem('expiration', expiration)
+		},
+	    destroyToken() {
+	    	Vue.$log.debug('destroyToken()')
+	      	localStorage.removeItem('token', token)
+	      	localStorage.removeItem('expiration', expiration)
+	    },
+
+		isAuthenticated() {
+			Vue.$log.debug('isAuthenticated()')
+			//Vue.$log.debug('isAuthenticated', this.getToken())
+		    if(!this.getToken()) {
+		    	return false
+		    }
+		   	return true
+		}
 	}
+
 	Object.defineProperties(Vue.prototype, {
 		$auth: {
 		  	get: () => {
