@@ -1,5 +1,5 @@
 <template>
-  <div class="margin-bottom">
+  <div>
    <nav class="navbar navbar-toggleable-sm navbar-expand-md navbar-light bg-white">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -63,9 +63,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import url('../styles/anim.css');
-.margin-bottom {
-  margin-bottom: 25px;
-}
 
 .navbar {
   font-size: 1.09em!important;
@@ -81,6 +78,7 @@ export default {
 
 .nav-link {
   border-bottom: 2px solid transparent;
+  cursor:pointer;
 }
 .nav-link:hover, .nav-link:focus {
   transition: border-color .318s;

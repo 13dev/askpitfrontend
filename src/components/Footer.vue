@@ -1,5 +1,5 @@
 <template>
-	<div class="footer">
+	<footer class="footer">
     <div class="container">
       <div class="clearfix">
         <div class="footer-logo"><a href="#"><img src="../assets/logo.png" width="120"></a></div>
@@ -33,7 +33,7 @@
       </div>
       <div class="footer-copyright text-center">Copyright © 2018 Askpit. All rights reserved.</div>
     </div>
-</div>
+</footer>
 </template>
 
 <script>
@@ -50,15 +50,25 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
 .footer {
-	position: relative;
+  position: absolute;
+  /*bottom: 0; */
+  width: 100%;
+  height: auto;
+  line-height: 60px;
+  padding: 40px 0;
+
+/*	position: relative;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	margin-top: 40px;
 	box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, .85);
-  	padding: 40px 0;
+  	 */
   	background-color: #434a54;
 }
 .footer-logo, .footer-nav {

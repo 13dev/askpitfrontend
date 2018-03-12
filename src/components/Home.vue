@@ -33,7 +33,4 @@
 </script>
 
 <style scoped>
-	.home {
-		margin-top: 10vh;
-	}
 </style>

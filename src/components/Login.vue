@@ -50,7 +50,7 @@
 				}
 				this.axios.post('auth/login',{
 					email: this.email,
-					password: this.password + '2'
+					password: this.password
 				})
 				.catch((error) => {
 					this.$log.debug('Catch - doLogin()')
@@ -81,10 +81,6 @@
 	}
 </script>
 <style lang="scss" scoped>
-.wrapper {
-	margin-top: 80px;
- 	margin-bottom: 80px;
-}
 
 .form-signin {
   max-width: 380px;

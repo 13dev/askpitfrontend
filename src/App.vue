@@ -1,12 +1,14 @@
 <template>
   <div>
+    <header>
     <navbar></navbar>
+    </header>
     <div id="app">
-      <div class="container" style="min-height: 400px;">
+      <div class="container">
         <router-view/>
       </div>
+        <app-footer></app-footer>
     </div>
-    <app-footer></app-footer>
   </div>
 </template>
 
@@ -28,20 +30,36 @@ export default {
 @import './styles/custom-bootstrap.scss';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import './styles/vars.scss';
+
 .bg-white {
     background:#ffffff !important;
 }
+
 body, html {
   background-image: url("assets/background.png");
-  /* Center and scale the image nicely */
+
   background-position: center;
   background-repeat: no-repeat;
-  height: 100%;
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /*margin-bottom: 60px; */
+}
+
+
+#app > .container {
+  padding: 0 15px 0;
 }
 
 .logo
 {
-    height: 80px;
+    height: 60px;
     margin-top: -13px;
+}
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 </style>
