@@ -8,23 +8,49 @@ import NotFound from '@/components/NotFound'
 import Login from '@/components/Login'
 import Api from '@/plugins/api.js'
 
-/*Vue.mixin({
-	methods: {
-		hMessage: (message, type = 'info') => {
-			var ComponentClass = Vue.extend(NavbarMessage)
-	        var instance = new ComponentClass({
-	            propsData: {
-	            	type: type,
-	            	message: message
-	        	}
-	        })
-	        instance.$mount()
-	        return instance
-		}, 
+/*
+	Vue.mixin({
+		methods: {
+			hMessage: (message, type = 'info') => {
+				var ComponentClass = Vue.extend(NavbarMessage)
+		        var instance = new ComponentClass({
+		            propsData: {
+		            	type: type,
+		            	message: message
+		        	}
+		        })
+		        instance.$mount()
+		        return instance
+			}, 
 
-    	hCapitalizeFirstLetter: str => str.charAt(0).toUpperCase() + str.slice(1)
-  }
-}) */
+	    	hCapitalizeFirstLetter: str => str.charAt(0).toUpperCase() + str.slice(1)
+	  }
+	})
+*/
+
+//Navigation guard
+Router.beforeEach((to, from, next) => {
+	if(to.matched.some(record => record.meta.guests)){
+		if(Vue.auth.isAuthenticated()){
+			next('/')
+		}
+		Vue.$log.info('guests - isAuthenticated', Vue.auth.isAuthenticated())
+	}
+	next()
+
+	/* else if(to.matched.some(record => record.meta.forAuth)){
+			if( ! Vue.auth.isAuthenticated() ){
+				next({
+				  path: '/login'
+				});
+			} else {
+				next()
+			}
+		} else {
+			next()
+		} */
+})
+
 
 Vue.use(Router)
 Vue.use(Api)
