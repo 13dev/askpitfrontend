@@ -1,6 +1,6 @@
-# askpitfrontend
+# PAP-FRONTEND
 
-> Frontend askpit
+> Front end of pap.
 
 ## Build Setup
 
