@@ -31,6 +31,7 @@
 	</div>
 </template>
 <script>
+import { EventBus } from '@/event-bus.js'
 	export default {
 		name: 'Login',
 		data() {
@@ -70,7 +71,7 @@
 					let data = response.data.data
 					this.$auth.setToken(data.token, data.expires_in + Date.now())
 					this.$log.debug('Then - doLogin()', response.data.code, response.data.message)
-
+					EventBus.$emit('logged', 'User logged')
 					// Redirect
 					this.$router.push({
 						name:'Home'

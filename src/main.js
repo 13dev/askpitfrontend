@@ -18,7 +18,7 @@ Vue.use(VueLogger, {
 axios.defaults.baseURL = process.env.APP_BASE_URL
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-//axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
@@ -47,11 +47,10 @@ router.beforeEach((to, from, next) => {
 })
 
 new Vue({
-  el: '#app',
   router,
   //components: { App },
   render: h => h(App),
   //template: '<App/>',
-})
+}).$mount('#app')
 
 

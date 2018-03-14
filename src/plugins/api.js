@@ -24,8 +24,8 @@ export default (Vue) => {
 		},
 	    destroyToken() {
 	    	Vue.$log.debug('destroyToken()')
-	      	localStorage.removeItem('token', token)
-	      	localStorage.removeItem('expiration', expiration)
+	      	localStorage.removeItem('token')
+	      	localStorage.removeItem('expiration')
 	    },
 
 		isAuthenticated() {
