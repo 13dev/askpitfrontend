@@ -28,30 +28,6 @@ import Api from '@/plugins/api.js'
 	})
 */
 
-//Navigation guard
-Router.beforeEach((to, from, next) => {
-	if(to.matched.some(record => record.meta.guests)){
-		if(Vue.auth.isAuthenticated()){
-			next('/')
-		}
-		Vue.$log.info('guests - isAuthenticated', Vue.auth.isAuthenticated())
-	}
-	next()
-
-	/* else if(to.matched.some(record => record.meta.forAuth)){
-			if( ! Vue.auth.isAuthenticated() ){
-				next({
-				  path: '/login'
-				});
-			} else {
-				next()
-			}
-		} else {
-			next()
-		} */
-})
-
-
 Vue.use(Router)
 Vue.use(Api)
 

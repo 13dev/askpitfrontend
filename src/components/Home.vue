@@ -28,6 +28,7 @@
 		},
 		created() {
 			this.$log.info('Home created')
+			this.$log.info(process.env.APP_BASE_URL)
 		}
 	}
 </script>
