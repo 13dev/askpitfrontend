@@ -2,15 +2,15 @@
 	<div class="wrapper">
 		<form class="form-signin">
 			<h2 class="form-signin-heading">Please login</h2>
+
 			<input
+			v-validate="'required|email'"
 			v-model="email"
 			type="text"
 			class="form-control"
-			name="username"
+			name="email"
 			placeholder="Email Address"
-			:class="{'is-invalid': invalid}"
-			required=""
-			autofocus="" />
+			:class="{'is-invalid': errors.has('email')}" />
 
 			<input
 			v-model="password"
@@ -20,7 +20,10 @@
 			name="password"
 			placeholder="Password"
 			required=""/>
-			<div class="invalid-feedback" v-if="invalid && invalidMessage !== null">
+		<div class="invalid-feedback" v-show="errors.has('email')">
+         {{ errors.first('email') }}
+        </div>
+       	<div class="invalid-feedback" v-show="invalid && invalidMessage">
          {{ invalidMessage }}
         </div>
 			<label class="checkbox">
