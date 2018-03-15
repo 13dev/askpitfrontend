@@ -20,8 +20,8 @@
 			name="password"
 			placeholder="Password"
 			required=""/>
-			<div class="invalid-feedback" v-if="invalid">
-          Please choose a username.
+			<div class="invalid-feedback" v-if="invalid && invalidMessage !== null">
+         {{ invalidMessage }}
         </div>
 			<label class="checkbox">
 				<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
@@ -31,14 +31,14 @@
 	</div>
 </template>
 <script>
-import { EventBus } from '@/event-bus.js'
 	export default {
 		name: 'Login',
 		data() {
 			return {
 				email: 'lesch.chesley@feil.biz',
 				password: 'secret',
-				invalid: false
+				invalid: false,
+				invalidMessage: null
 			}
 		},
 		methods: {
@@ -58,7 +58,12 @@ import { EventBus } from '@/event-bus.js'
 					this.invalid = true
 					if (error.response) {
 				      	// The request was made, but the server responded with a status code
-				      	this.$log.debug(error.response, error.response.status,error.response.headers);
+				      	this.$log.debug(error.response, error.response.status);
+				      	this.invalidMessage = (error.response.data.message !== undefined ? error.response.data.message : null)
+				      	/*if(error.response.data.code == 'invalid_credentials'){
+				      		//Invalid credentials
+				      		this.invalidMessage = (error.response.data.message !== undefined ? error.response.data.message : null)
+				      	} */
 				    } else {
 				      	// Something happened in setting up the request that triggered an Error
 				    	this.$log.debug('Error', error.response);

@@ -26,7 +26,6 @@
 
 <script>
 import NavbarMessage from './NavbarMessage'
-import { EventBus } from '@/event-bus.js'
 import Vue from 'vue'
 export default {
   name: 'Navbar',
@@ -34,22 +33,14 @@ export default {
     return {
       links: [
         {
-          id: 0,
-          text: 'Hello World',
-          page:'/HelloWorld',
-        },
-        {
-          id: 1,
           text: 'Home',
           page:'/Home',
         },
         {
-          id: 2,
           text: 'About',
           page:'/About'
         },
         {
-          id: 3,
           text: 'Contact',
           page:'/Contact'
         }
@@ -69,11 +60,10 @@ export default {
         return
 
       this.$auth.destroyToken()
-      this.$bus.$emit('update-navbar', 'Update Navbar')
       // Redirect
-      this.$router.push({
-        name:'Home'
-      })
+      this.$router.go('/')
+      this.$bus.$emit('update-navbar', 'Update Navbar')
+
     },
     checkIfIsLogged() {
       if(this.$auth.isAuthenticated())
@@ -82,29 +72,8 @@ export default {
         return false
     }
   },
-  created () {
-    EventBus.$on('logged', () => {
-      this.isLogged = this.checkLogin()
-    })
-  },
   components:{
     'n-message': NavbarMessage
-  },
-  methods: {
-    doLogout() {
-      if(!this.$auth.isAuthenticated())
-        return
-      this.$auth.destroyToken()
-      // Redirect
-      this.$router.push({
-        name:'Home'
-      })
-    },
-    checkLogin() {
-    EventBus.$on('logged', () => {
-        this.isLogged = this.checkLogin()
-      })
-    }
   }
 }
 </script>
