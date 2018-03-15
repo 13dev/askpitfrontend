@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLogger from 'vuejs-logger'
+import VeeValidate from 'vee-validate'
 
 Vue.use(VueLogger, {
 	// ['debug', 'info', 'warn', 'error', 'fatal']
@@ -21,6 +22,7 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 axios.defaults.headers.common['Content-type'] = 'application/json;charset=UTF-8'
 axios.defaults.headers.common['Accept'] = 'application/json'
 Vue.use(VueAxios, axios)
+Vue.use(VeeValidate)
 
 Vue.config.productionTip = false
 
