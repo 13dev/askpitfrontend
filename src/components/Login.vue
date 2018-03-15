@@ -58,10 +58,10 @@ import { EventBus } from '@/event-bus.js'
 					this.invalid = true
 					if (error.response) {
 				      	// The request was made, but the server responded with a status code
-				      	this.$log.debug(error.response.data, error.response.status,error.response.headers);
+				      	this.$log.debug(error.response, error.response.status,error.response.headers);
 				    } else {
 				      	// Something happened in setting up the request that triggered an Error
-				    	this.$log.debug('Error', error.message);
+				    	this.$log.debug('Error', error.response);
 				    }
 				})
 				.then((response) => {
@@ -71,7 +71,7 @@ import { EventBus } from '@/event-bus.js'
 					let data = response.data.data
 					this.$auth.setToken(data.token, data.expires_in + Date.now())
 					this.$log.debug('Then - doLogin()', response.data.code, response.data.message)
-					EventBus.$emit('logged', 'User logged')
+					this.$bus.$emit('update-navbar', 'Update Navbar')
 					// Redirect
 					this.$router.push({
 						name:'Home'

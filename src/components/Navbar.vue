@@ -13,9 +13,9 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <router-link to="/register" v-if="!this.$auth.isAuthenticated()" tag="button" class="btn btn-primary my-2 mx-2 my-sm-0">Register</router-link>
-      <router-link to="/login" v-if="!this.$auth.isAuthenticated()" tag="button" class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</router-link>
-      <button @click.prevent="doLogout()" v-if="this.$auth.isAuthenticated()" class="btn btn-outline-danger my-2 mx-2 my-sm-0">Logout</button>
+      <router-link to="/register" v-if="!isLogged" tag="button" class="btn btn-primary my-2 mx-2 my-sm-0">Register</router-link>
+      <router-link to="/login" v-if="!isLogged" tag="button" class="btn btn-outline-success my-2 mx-2 my-sm-0">Login</router-link>
+      <button v-if="isLogged" @click.prevent="doLogout()" class="btn btn-outline-danger my-2 mx-2 my-sm-0">Logout</button>
     </form>
   </div>
 </nav>
@@ -54,7 +54,32 @@ export default {
           page:'/Contact'
         }
       ],
-      isLogged: this.checkLogin()
+      isLogged: this.checkIfIsLogged()
+    }
+  },
+  created() {
+    this.$bus.$on('update-navbar', () => {
+      this.isLogged = this.checkIfIsLogged()
+    })
+  },
+  methods: {
+    doLogout()
+    {
+      if(!this.$auth.isAuthenticated())
+        return
+
+      this.$auth.destroyToken()
+      this.$bus.$emit('update-navbar', 'Update Navbar')
+      // Redirect
+      this.$router.push({
+        name:'Home'
+      })
+    },
+    checkIfIsLogged() {
+      if(this.$auth.isAuthenticated())
+        return true
+      else
+        return false
     }
   },
   created () {
