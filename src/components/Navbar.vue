@@ -86,7 +86,7 @@ export default {
   font-size: 1.09em!important;
   padding: 1rem 1.5rem !important;
   border: none;
-  height: 70px;
+  min-height: 70px;
   border-bottom: 2px solid rgba(59, 175, 218, .55);
   background-color: #fff;
   -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);

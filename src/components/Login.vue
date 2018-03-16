@@ -9,23 +9,19 @@
 			type="text"
 			class="form-control"
 			name="email"
-			placeholder="Email Address"
-			:class="{'is-invalid': errors.has('email')}" />
+			placeholder="Email Address" />
 
 			<input
 			v-model="password"
 			type="password"
 			class="form-control"
-			:class="{'is-invalid': invalid}"
 			name="password"
-			placeholder="Password"
-			required=""/>
-		<div class="invalid-feedback" v-show="errors.has('email')">
-         {{ errors.first('email') }}
-        </div>
-       	<div class="invalid-feedback" v-show="invalid && invalidMessage">
-         {{ invalidMessage }}
-        </div>
+			placeholder="Password" />
+
+	        <p class="text-danger" v-if="errors.has('email') || invalid">
+	        	{{ errors.first('email') }}
+	        	{{ invalidMessage }}
+	        </p>
 			<label class="checkbox">
 				<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
 			</label>
@@ -47,11 +43,15 @@
 		methods: {
 			doLogin() {
 				this.$log.debug('doLogin()')
+
+				// check if user is authenticated
 				if(this.$auth.isAuthenticated()){
 					this.$router.push({
 						name:'Home'
 					})
 				}
+
+				//make post request
 				this.axios.post('auth/login',{
 					email: this.email,
 					password: this.password
@@ -62,14 +62,13 @@
 					if (error.response) {
 				      	// The request was made, but the server responded with a status code
 				      	this.$log.debug(error.response, error.response.status);
+				      	
 				      	this.invalidMessage = (error.response.data.message !== undefined ? error.response.data.message : null)
-				      	/*if(error.response.data.code == 'invalid_credentials'){
-				      		//Invalid credentials
-				      		this.invalidMessage = (error.response.data.message !== undefined ? error.response.data.message : null)
-				      	} */
 				    } else {
+				      	
 				      	// Something happened in setting up the request that triggered an Error
-				    	this.$log.debug('Error', error.response);
+				    	
+				    	this.$log.debug('Error ', error.response);
 				    }
 				})
 				.then((response) => {
@@ -77,9 +76,16 @@
 					this.invalid = false
 
 					let data = response.data.data
+
+					//set Token
 					this.$auth.setToken(data.token, data.expires_in + Date.now())
+					
+					//Debug
 					this.$log.debug('Then - doLogin()', response.data.code, response.data.message)
+
+					//emit a event
 					this.$bus.$emit('update-navbar', 'Update Navbar')
+					
 					// Redirect
 					this.$router.push({
 						name:'Home'
