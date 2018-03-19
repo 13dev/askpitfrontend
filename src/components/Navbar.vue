@@ -47,7 +47,7 @@ export default {
     }
   },
   created() {
-    this.$bus.$on('update-navbar', () => {
+    this.$bus.$on('update:navbar', () => {
       this.isLogged = this.checkIfIsLogged()
     })
   },
@@ -60,7 +60,7 @@ export default {
       this.$auth.destroyToken()
       // Redirect
       this.$router.go('/')
-      this.$bus.$emit('update-navbar', 'Update Navbar')
+      this.$bus.$emit('update:navbar', 'Update Navbar')
 
     },
     checkIfIsLogged() {

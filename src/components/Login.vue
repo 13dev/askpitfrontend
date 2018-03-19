@@ -84,7 +84,7 @@
 					this.$log.debug('Then - doLogin()', response.data.code, response.data.message)
 
 					//emit a event
-					this.$bus.$emit('update-navbar', 'Update Navbar')
+					this.$bus.$emit('update:navbar', 'Update Navbar')
 					
 					// Redirect
 					this.$router.push({
