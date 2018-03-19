@@ -26,10 +26,10 @@
 	export default {
 		name: 'Home',
 		data () {
-			return {
-			}
+			return { }
 		},
 		created() {
+			this.$bus.$emit('show:nav-message', { type: 'primary', message: 'ehhehehhehe' })
 			this.$log.info('Home created')
 			this.$log.info(process.env.APP_BASE_URL)
 		}

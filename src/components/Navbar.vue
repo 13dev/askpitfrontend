@@ -19,8 +19,6 @@
     </form>
   </div>
 </nav>
-<div ref="navmessage"></div>
-<!--<n-message message="looowefowlel" type="primary"></n-message>-->
 </div>
 </template>
 
@@ -73,7 +71,7 @@ export default {
     }
   },
   components:{
-    'n-message': NavbarMessage
+    'navbar-message': NavbarMessage
   }
 }
 </script>

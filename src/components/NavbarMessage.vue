@@ -4,7 +4,7 @@
     <div class="container">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
       <i class="fa" :class="'fa-' + icon" aria-hidden="true">&nbsp;&nbsp;</i>
-      <strong>deqwf {{ message }}</strong>
+      <strong>{{ message }}</strong>
     </div>
   </div>
 </div>
@@ -14,10 +14,10 @@
 export default {
 
   name: 'NavbarMessage',
-  props: {
+  /*props: {
     message: {
       type: String,
-      required: true
+      default: ''
     },
     type: {
     	type: String,
@@ -32,11 +32,13 @@ export default {
 	    		'secondary' ].includes(value)
     	}
     }
-  },
+  },*/
   data () {
     return {
-    	icon: this.checkIcon(),
-    	show: true
+    	icon: '',
+    	show: false,
+      message: '',
+      type: 'info'
     }
   },
   methods: {
@@ -57,7 +59,16 @@ export default {
 	}
   },
   created(){
-  	this.autoClose()
+    console.log("created nav message")
+
+    this.$bus.$on('show:nav-message', (data) => {
+      this.message = data.message
+      this.type = data.type
+      this.show = true
+      this.icon = this.checkIcon()
+      this.$mount()
+      this.autoClose()
+    })
   }
 }
 </script>

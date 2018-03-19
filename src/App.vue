@@ -1,7 +1,8 @@
 <template>
   <div>
     <header>
-    <navbar></navbar>
+     <navbar></navbar>
+     <navmessage></navmessage>
     </header>
     <div id="app">
       <div class="container">
@@ -15,13 +16,19 @@
 <script>
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
+import NavbarMessage from './components/NavbarMessage'
 
 export default {
   name: 'App',
   components:{
     'navbar': Navbar,
-    'app-footer': Footer
+    'app-footer': Footer,
+    'navmessage': NavbarMessage
+  },
+  data() {
+    return {
+
+    }
   }
 }
 </script>
