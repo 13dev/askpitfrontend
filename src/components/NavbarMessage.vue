@@ -51,7 +51,7 @@ export default {
 		}
 		return icon
 	},
-	autoClose(active = true, time = 2000){
+	autoClose(active = true, time = 6000){
 		//if(!active) return;
 		setTimeout(() => {
             this.show = false
@@ -66,7 +66,6 @@ export default {
       this.type = data.type
       this.show = true
       this.icon = this.checkIcon()
-      this.$mount()
       this.autoClose()
     })
   }
