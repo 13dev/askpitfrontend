@@ -69,4 +69,14 @@ body {
   margin-top: 80px;
   margin-bottom: 80px;
 }
+
+.p30 {
+  padding: 30px;
+}
+
+.content {
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+}
 </style>

@@ -54,13 +54,24 @@ export default {
   methods: {
     doLogout()
     {
+      //User is authenticated ?
       if(!this.$auth.isAuthenticated())
         return
 
+      //Destroy the token
       this.$auth.destroyToken()
-      // Redirect
-      this.$router.go('/')
+
+      //Show a message
+      this.$bus.$emit('show:nav-message', { 
+        type: 'info', 
+        message: 'We hope to see you again.'
+      })
+
+      // update the navbar
       this.$bus.$emit('update:navbar', 'Update Navbar')
+
+      // Redirect
+      //this.$router.go('/')
 
     },
     checkIfIsLogged() {

@@ -18,9 +18,8 @@
 			name="password"
 			placeholder="Password" />
 
-	        <p class="text-danger" v-if="errors.has('email') || invalid">
+	        <p class="text-danger" v-if="errors.has('email')">
 	        	{{ errors.first('email') }}
-	        	{{ invalidMessage }}
 	        </p>
 			<label class="checkbox">
 				<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
@@ -63,12 +62,20 @@
 				      	// The request was made, but the server responded with a status code
 				      	this.$log.debug(error.response, error.response.status);
 				      	
-				      	this.invalidMessage = (error.response.data.message !== undefined ? error.response.data.message : null)
+				      	//this.invalidMessage = (error.response.data.message !== undefined ? error.response.data.message : null)
+				      	this.$bus.$emit('show:nav-message', { 
+				      		type: 'danger', 
+				      		message: error.response.data.message
+				      	})
 				    } else {
 				      	
 				      	// Something happened in setting up the request that triggered an Error
 				    	
 				    	this.$log.debug('Error ', error.response);
+				    	this.$bus.$emit('show:nav-message', { 
+				      		type: 'danger', 
+				      		message: error.response //TODO: Correct ?
+				      	})
 				    }
 				})
 				.then((response) => {
@@ -85,6 +92,11 @@
 
 					//emit a event
 					this.$bus.$emit('update:navbar', 'Update Navbar')
+					
+					this.$bus.$emit('show:nav-message', { 
+				      		type: 'success', 
+				      		message: 'Login done successfully.'
+				    })
 					
 					// Redirect
 					this.$router.push({

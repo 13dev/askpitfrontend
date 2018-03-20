@@ -6,6 +6,7 @@ import Register from '@/components/Register'
 import NavbarMessage from '@/components/NavbarMessage'
 import NotFound from '@/components/NotFound'
 import Login from '@/components/Login'
+import Profile from '@/components/Profile'
 import Api from '@/plugins/api.js'
 
 /*
@@ -59,6 +60,11 @@ export default new Router({
 		meta: {
 			guests: true
 		}
+	},
+	{
+		path: '/profile/:id',
+		name: 'Profile',
+		component: Profile,
 	},
 	{
 		path: '/404',
