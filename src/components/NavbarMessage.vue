@@ -2,7 +2,9 @@
 <div id="nav-message" v-if="show">
   <div id="inner-message" class="alert" :class="'alert-' + type">
     <div class="container">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+      ×
+      </button>
       <i class="fa" :class="'fa-' + icon" aria-hidden="true">&nbsp;&nbsp;</i>
       <strong>{{ message }}</strong>
     </div>
@@ -52,14 +54,14 @@ export default {
 		return icon
 	},
 	autoClose(active = true, time = 6000){
-		//if(!active) return;
+		if(!active) return;
 		setTimeout(() => {
-            this.show = false
-        }, time);
+        this.show = false
+    }, time);
 	}
   },
   created(){
-    console.log("created nav message")
+    console.log('created nav message')
 
     this.$bus.$on('show:nav-message', (data) => {
       this.message = data.message
@@ -80,7 +82,7 @@ export default {
 #nav-message
 {
   width: 100%;
-  margin-top: -4px;
+  margin-top: 0px;
   margin-bottom: 7px;
   opacity: .9;
 }
